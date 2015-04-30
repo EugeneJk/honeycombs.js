@@ -18,6 +18,7 @@ A modified version of mstrehse's Honeycombs jQuery Plugin. It produces responsiv
 
 ## Modifications
 - Added centering cells
+- Reworked around 90%
 
 ## Usage
 To generate a honeycomb grid, use the following markup:
@@ -25,23 +26,22 @@ To generate a honeycomb grid, use the following markup:
 ```
 <script src="honeycombs/js/jquery.honeycombs.js"></script>
 <link rel="stylesheet" type="text/css" href="honeycombs/css/honeycombs.css" />
-<div class="honeycombs">
-		<div class="comb">
-			<div class="front-content">
-				<p>I am a front title</p>
-			</div>
-			<div class="back-content">
-				<p>I am a back title</p>
-			</div>
-		</div>
-		<div class="comb">
-			<div class="front-content">
-				<p>I am a front title</p>
-			</div>
-			<div class="back-content">
-				<p>I am a back title</p>
-			</div>
-		</div>
+
+<div class="honeycombs honeycombs-wrapper">
+    <div class="honeycombs-inner-wrapper" >
+        <div class="comb">
+            <span class="icon-hex-lg"></span>
+            <div class="inner">
+                <div style="padding:100px 20px 0 20px;">Text to place here. Text to place here</div>
+            </div>
+        </div>
+        <div class="comb">
+            <span class="icon-hex-lg"></span>
+            <div class="inner">
+                <div style="padding:100px 20px 0 20px;">Text to place here. Text to place here</div>
+            </div>
+        </div>
+    </div>
 </div>
 ```
 and add the following code at the end of the `<body>` tag
@@ -52,7 +52,6 @@ and add the following code at the end of the `<body>` tag
 	$('.honeycombs').honeycombs({
 		combWidth:250,  // width of the hexagon
 		margin: 0,		// spacing between hexagon
-		threshold: 3  	// hide placeholder hexagons when number of hexagons in a row is more than the threshold number
 	});
 });
 </script>

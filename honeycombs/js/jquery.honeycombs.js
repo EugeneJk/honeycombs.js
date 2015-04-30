@@ -6,7 +6,6 @@
         var settings = $.extend({
             combWidth: 250,
             margin: 0,
-            threshold: 3
         }, options);
 
         function initialise(element) {
@@ -14,44 +13,11 @@
             $(element).addClass('honeycombs-wrapper');
             
             var width = 0;
+            var newWidth = 0;
             var combWidth = 0;
             var combHeight = 0;
-            var num = 0;
-            var $wrapper = null;
-            
-            /**
-             * Build the dom
-             */
-            function buildHtml(){
-                // add the 2 other boxes
-                $(element).find('.comb').wrapAll('<div class="honeycombs-inner-wrapper"></div>');
-                $wrapper = $(element).find('.honeycombs-inner-wrapper');
-
-                $(element).find('.comb').append('<div class="inner front"></div>');
-                $(element).find('.comb').append('<div class="inner back"></div>');
-                $(element).find('.inner').append('<div class="wrapper"></div>');
-                $(element).find('.comb').append('<span class="icon-hex-lg"></span>');
-
-                num = 0;
-                
-                $(element).find('.comb').each(function(){
-                    num = num + 1;
-
-                    if($(this).find('.inner').length > 0){
-                        $(this).find('.inner.front .wrapper').html($(this).find('.front-content').html());
-                        $(this).find('.inner.back .wrapper').html($(this).find('.back-content').html());
-                        $(this).find('.front-content').remove();
-                        $(this).find('.back-content').remove();
-                    }else{
-                        $(this).find('.inner').remove();
-                    };
-                });
-
-                // Fix Firefox padding error
-                if (navigator.userAgent.search("Firefox") > -1) { 
-                    $('.comb span').addClass('firefox');
-                }
-            }
+            var $wrapper = $(element).find('.honeycombs-inner-wrapper');
+            $('.icon-hex-lg').css('font-size',settings.combWidth);
             
             /**
              * Update all scale values
@@ -139,10 +105,10 @@
                 };
 
                 function orderCombs(leftHandler, topHandler){
-                    var elements = $(element).find('.comb').filter(':not(.placeholder.hide)');
-                    
+                    var elements = $(element).find('.comb');
+
                     // расчитать базовое количество элементов в первой строке
-                    var firstRowCount = calculateFirstRowCount(left, settings.margin, $(element).find('.comb').filter(':not(.placeholder.hide)'));
+                    var firstRowCount = calculateFirstRowCount(left, settings.margin, elements);
                     
                     // расчитываем матрицу положения элементов
                     var positions = calculateMatrix(firstRowCount, elements.length);
@@ -195,11 +161,12 @@
                     while(counter < elementsCount){
                         var currentRowCount = rowIndex % 2 === 0 ? firstRowCount : firstRowCount -1;
                         var nearRowCount = rowIndex % 2 === 0 ? firstRowCount - 1 : firstRowCount;
+                        currentRowCount = firstRowCount === 1 ? 1 : currentRowCount;
                         var leftItems = elementsCount - counter;
                         counter += currentRowCount;
                         if(leftItems < currentRowCount){
                             // Четная строка и на ней нечетное количество элементов необходимо разбить
-                            if( (currentRowCount) % 2 === 0 && (leftItems % 2 === 1) ){
+                            if( (currentRowCount) % 2 === 0 && (leftItems % 2 === 1) && firstRowCount > 2){
                                 // если остался только 1 элемент, то пересобираем матрицу и уменьшаем количество элементов
                                 if(leftItems === 1){
                                     positions = calculateMatrix(firstRowCount - 1, elementsCount);
@@ -230,30 +197,20 @@
                     }
                     return result;
                 };
-
+                
                 if (newWidth < 1.5 * (combWidth + settings.margin)) {
-                    $('.comb.placeholder').addClass('hide');
-
                     orderCombs(noOffset, fullTop);
-                } else if (newWidth < settings.threshold * (combWidth + settings.margin)) {
-                    $('.comb.placeholder').addClass('hide');
-                    orderCombs(withOffset, halfTop);
                 } else {
-                    $('.comb.placeholder').removeClass('hide');
                     orderCombs(withOffset, halfTop);
                 }
                 
-                
-                $wrapper
-                    .height(top + combHeight)
-                    .width(maxLeft - settings.margin);
+                $wrapper.height(top + combHeight).width(maxLeft - settings.margin);
             };
             
             $(window).resize(function(){
                 reorder(true);
             });
             
-            buildHtml();
             reorder(false);
         }
 
