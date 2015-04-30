@@ -1,0 +1,13 @@
+{
+  "name": "honeycombs.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/EugeneJk/honeycombs.js",
+  "authors": [
+    "shadyjk@yandex.ru"
+  ],
+  "main": [
+      "honeycombs.js/honeycombs/js/jquery.honeycombs.js",
+      "honeycombs.js/honeycombs/css/honeycombs.css"
+  ],
+  "license": "GPL v.3"
+}
