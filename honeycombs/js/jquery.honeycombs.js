@@ -127,6 +127,10 @@
                                 }else{
                                     $(currentElement).css('left', left).css('top', top);
                                 }
+                                // Fix Firefox padding error
+                                if (navigator.userAgent.search("Firefox") > -1) { 
+                                    $('.comb span').addClass('firefox');
+                                }
                             }
                             left = left + ( combWidth + settings.margin );
 
