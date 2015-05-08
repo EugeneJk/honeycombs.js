@@ -1,65 +1,59 @@
-.honeycombs{
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    text-align: center;
-
+.honeycombs {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
 }
-
 .honeycombs * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
-
-.honeycombs .honeycombs-inner-wrapper{
-    display: inline-block;
-    overflow: hidden;
-    width: 700px;
-    position: relative;
-    height: 1200px;
+.honeycombs .honeycombs-inner-wrapper {
+  display: inline-block;
+  overflow: hidden;
+  width: 700px;
+  position: relative;
+  height: 1200px;
 }
-
-.honeycombs .comb{
-    position: absolute;
-    display: inline-block;
-    cursor: pointer;
+.honeycombs .comb {
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 50%;
+  overflow: hidden;
 }
-
-.comb .inner {
-    top:0;
-    left:0;
-    height: 100%;
-    width: 100%;
-    position: absolute;
+.honeycombs .comb .inner {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
 }
-
-.comb .icon-hex-lg {
-    font-family: 'icomoon';
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    color: #26A196;
+.honeycombs .comb .icon-hex-lg {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  color: #26A196;
 }
-.icon-hex-lg:before {
-    content: "\e604";
+.honeycombs .comb .icon-hex-lg:before {
+  content: "\e604";
 }
-
-.comb span.firefox {
-    left: 0;
-    position: absolute;
-    top: 20px;
-    z-index: -1;
+.honeycombs .comb span.firefox {
+  left: 0;
+  position: absolute;
+  top: 0px;
+  z-index: -1;
 }
-
+.honeycombs .comb:hover .icon-hex-lg {
+  color: #26A100;
+}
 @font-face {
-    font-family: 'icomoon';
-    src:url('../fonts/icomoon.eot?3d1mhj');
-    src:url('../fonts/icomoon.eot?#iefix3d1mhj') format('embedded-opentype'),
-        url('../fonts/icomoon.woff?3d1mhj') format('woff'),
-        url('../fonts/icomoon.ttf?3d1mhj') format('truetype'),
-        url('../fonts/icomoon.svg?3d1mhj#icomoon') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'icomoon';
+  src: url('../fonts/icomoon.eot?3d1mhj');
+  src: url('../fonts/icomoon.eot?#iefix3d1mhj') format('embedded-opentype'), url('../fonts/icomoon.woff?3d1mhj') format('woff'), url('../fonts/icomoon.ttf?3d1mhj') format('truetype'), url('../fonts/icomoon.svg?3d1mhj#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
